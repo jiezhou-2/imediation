@@ -3,7 +3,7 @@
 #' @description Find the descendants
 #' @param \code{BB} represents the estimated coefficients
 #' @param \code{index} is the mediator of interest.
-#'
+#' @import igraph
 #' @return the descendants of given mediator and the related weights
 #' @export
 #'

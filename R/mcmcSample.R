@@ -7,7 +7,7 @@
 #' @param \code{index} is the mediator of interest
 #' @param \code{u} is the state vector
 #' @param \code{size} is the number of observations to simulate.
-#'
+#' @import MASS
 #' @return A list with length 2. The first element is a size-by-p
 #' matrix representing the observations of mediators with treatment; the second represents
 #' the observations of mediators without treatment.

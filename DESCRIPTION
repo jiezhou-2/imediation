@@ -10,8 +10,15 @@ Encoding: UTF-8
 LazyData: true
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    combinat,
+    pracma
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 URL: https://github.com/jiezhou-2/imediation
 BugReports: https://github.com/jiezhou-2/imediation/issues
+Imports: 
+    combinat,
+    pracma,
+    igraph,
+    MASS
