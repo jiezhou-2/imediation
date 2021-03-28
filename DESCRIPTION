@@ -1,0 +1,16 @@
+Package: imediation
+Type: Package
+Title: Individual Mediation Analysis
+Version: 0.1.0
+Author: Jie Zhou
+Maintainer: Jie Zhou <chowstat@gmail.com>
+Description: Using decompostion-based method to perform individual mediation analysis.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 7.1.1
+ 
