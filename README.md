@@ -26,10 +26,6 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("jiezhou-2/imediation")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(imediation)
 library(combinat)
@@ -55,12 +51,27 @@ library(igraph)
 #>     union
 ```
 
-## A mediation model with 2 continuous mediators and binary treatment and outcome
-
-## A mediation model with 10 continuous mediators and binary treatment and outcome
+## Example 1. A mediation model with 2 continuous mediators and binary treatment and outcome
 
 ``` r
-##define the causal relationships among treatment, mediators and ##outcome
+#adjacency matrix
+AA=matrix(0,nrow = 4,ncol =4)
+A=matrix(c(0,1,0,0),nrow=2)
+AA[c(2,4),1]=1
+AA[3,1]=0
+AA[4,c(1,2,3)]=1
+AA[2:3,2:3]=A
+#create graph
+g1=graph_from_adjacency_matrix(adjmatrix = t(AA))
+plot.igraph(g1)
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+## Example 2. A mediation model with 10 continuous mediators and binary treatment and outcome
+
+``` r
+##adjacency matrix
 AA=matrix(0,nrow = 12,ncol =12)
 A=matrix(nrow = 10, ncol = 10)
 A[10,]=c(0,0,0,1,0,0,0,0,0,0)
@@ -77,11 +88,12 @@ AA[2:5,1]=1
 AA[12,1]=1
 AA[12,2:11]=1
 AA[2:11,2:11]=A
+#create graph 
 g1=graph_from_adjacency_matrix(adjmatrix = t(AA))
 plot.igraph(g1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 ``` r
 set.seed(1)
@@ -124,4 +136,6 @@ for (j in 1:3) {
  boxplot(effect2)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+## Example 3. A high-dimensional mediation model with 100 continuous mediators and binary treatment and outcome

@@ -2,7 +2,7 @@
 title: "Individual Mediation Analysis Using imediation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{individual_mediation_analysis}
+  %\VignetteIndexEntry{Individual Mediation Analysis Using imediation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

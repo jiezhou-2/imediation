@@ -31,7 +31,7 @@ regression=function(form, type, data, C){
     B=C
     for (j in 1:p) {
       m_j=data[,j+1]
-      non=which(A[j,]!=0)
+      non=which(C[j,]!=0)
       if (length(non)!=0){
         parents=data[,c(1,non+1)]
         a=lm(m_j~parents)
@@ -39,7 +39,7 @@ regression=function(form, type, data, C){
         mcoe[,j]=ll[c(1,2),1]
         res[,j]=a$residuals
         b=summary(a)$coefficients[,1][-c(1,2)]
-        B[j,which(A[j,]!=0)]=b
+        B[j,which(C[j,]!=0)]=b
       }else{
         parents=data[,1]
         a=lm(m_j~parents)

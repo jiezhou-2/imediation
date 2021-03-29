@@ -5,6 +5,7 @@
 \title{Title}
 \usage{
 binary(
+  p = 10,
   size = 200,
   tc_m = 0.5,
   mc_m = 0.5,
