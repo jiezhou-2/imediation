@@ -50,7 +50,7 @@ regression=function(form, type, data, C){
     }
     mcov=diag(diag(var(res)))
   }
-  ##outcome model: decomposition method
+  ##outcome model
   index1=which(form[[1]]!=0)
   p1=length(index1)
   MM=form[[2]]
@@ -74,11 +74,11 @@ regression=function(form, type, data, C){
   index_mm=c()
   j=0
   for (i in 1:(p-1)) {
-    index2=which(MM[,i]!=0)
+    index2=which(MM[,i]!=0)-1
     if (length(index2)==0) next()
     fo=update(fo, ~ . + mediators[,i]:mediators[,index2])
-    j=j+(p-i)
     index_mm=c(index_mm,index2+j)
+    j=j+(p-i)
   }
   result=glm(formula = fo, family = type )
   ss=summary(result)$coefficients
