@@ -22,7 +22,7 @@ beffect=function(index,u, mintercept,BB,type,ocoe_tm,ocoe_confounder
   ##index-mediator you want to investigate
   ##u-the given enviroment vector
   ##size-the sampel size to compute the effect.
-  size=200
+  size=2000
   simdata=mcsample(mcov = mcov , mintercept = mintercept,
                    BB=BB,
                    index = index, u=u,size=size)

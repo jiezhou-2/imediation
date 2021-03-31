@@ -72,7 +72,6 @@ plot.igraph(g1)
 
 ``` r
 #data generation
-set.seed(5)
 size=200
  treatment=sample(x=c(0,1), size = size, replace = T,prob = c(0.5, 0.5))
   mediator=matrix(nrow = size, ncol = 2)
@@ -93,14 +92,6 @@ size=200
       }
   data1=cbind(treatment,mediator,outcome)
   colnames(data1)=c("treatment",paste("mediator",1:2, sep = ""), "outcome")
-  head(data1)
-#>      treatment   mediator1  mediator2 outcome
-#> [1,]         1 -0.49769348  0.8188089       1
-#> [2,]         0  0.33789728  0.2731903       1
-#> [3,]         0 -0.02892282  0.4324443       0
-#> [4,]         1  0.38556731 -0.2900427       1
-#> [5,]         1  0.12324478  1.2016982       0
-#> [6,]         0 -0.47645248  0.5729635       1
 ```
 
 ``` r
@@ -121,14 +112,12 @@ BB[2:(p+1),1]=result$mcoe[2,]
 BB[p+2,1]=result$ocoe_treatment
 BB[p+2,2:(p+1)]=result$ocoe_mediator
 BB[2:(p+1),2:(p+1)]=result$B
-a1=combinat::hcube(rep(2,2), scale = 1)
-us=ifelse(a1==1,0, 1)
-effect1=matrix(nrow = 2^2,ncol = 2)
+effect1=matrix(nrow = 100,ncol = 2)
 for (j in 1:2) {
- for (m in 1:2^2) {
+  for (m in 1:100) {
    effect1[m,j]=beffect(
      index=j,
-     u=us[m,],
+     u=c(1,0),
      mintercept=mintercept,
      BB=BB,
      type="binomial",
@@ -137,9 +126,9 @@ for (j in 1:2) {
      ocoe_intercept=ocoe_intercept,
      ocoe_mm=ocoe_mm
      )
- }
- }
- boxplot(effect1)
+  }
+}
+boxplot(effect1)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
@@ -169,13 +158,13 @@ size=200
   data2=cbind(treatment,mediator,outcome)
   colnames(data2)=c("treatment",paste("mediator",1:2, sep = ""), "outcome")
   head(data2)
-#>      treatment   mediator1 mediator2 outcome
-#> [1,]         0  0.28884735 0.5075330       1
-#> [2,]         1  0.64420274 0.6433699       1
-#> [3,]         0  0.08444273 0.6232858       1
-#> [4,]         0  0.04556401 0.2326180       0
-#> [5,]         1 -0.26264062 0.8169748       1
-#> [6,]         0  0.18458336 0.6286115       0
+#>      treatment    mediator1   mediator2 outcome
+#> [1,]         1 -0.009785498 -0.08289312       1
+#> [2,]         1  0.180867108  0.35346556       0
+#> [3,]         1  0.492428996  0.62617439       0
+#> [4,]         1  0.065645524  0.17711412       1
+#> [5,]         0 -0.353597207 -0.67830986       0
+#> [6,]         1  0.188884253  1.29189189       1
 ```
 
 ``` r
@@ -245,12 +234,12 @@ size=200
   colnames(data3)=c("treatment",paste("mediator",1:2, sep = ""), "outcome")
   head(data3)
 #>      treatment  mediator1   mediator2 outcome
-#> [1,]         1  0.8607714  1.32199678       1
-#> [2,]         0  0.2937118  0.48851004       0
-#> [3,]         1  0.9163751  0.63545394       1
-#> [4,]         0  0.2170382 -0.02617398       1
-#> [5,]         0 -0.3701507 -0.34327495       0
-#> [6,]         1 -0.5724202 -0.10333047       1
+#> [1,]         1 -0.1599913  0.02571131       1
+#> [2,]         1  1.0050611  0.70515166       1
+#> [3,]         0  0.2098712 -0.83313323       0
+#> [4,]         0  0.4307282  0.80259545       1
+#> [5,]         1  0.5261639 -0.17024382       1
+#> [6,]         1  1.2735795  1.55124956       1
 ```
 
 ``` r

@@ -63,7 +63,6 @@ plot.igraph(g1)
 
 ```{r}
 #data generation
-set.seed(5)
 size=200
  treatment=sample(x=c(0,1), size = size, replace = T,prob = c(0.5, 0.5))
   mediator=matrix(nrow = size, ncol = 2)
@@ -84,8 +83,8 @@ size=200
       }
   data1=cbind(treatment,mediator,outcome)
   colnames(data1)=c("treatment",paste("mediator",1:2, sep = ""), "outcome")
-  head(data1)
 ```
+
 
 
 ```{r}
@@ -106,14 +105,12 @@ BB[2:(p+1),1]=result$mcoe[2,]
 BB[p+2,1]=result$ocoe_treatment
 BB[p+2,2:(p+1)]=result$ocoe_mediator
 BB[2:(p+1),2:(p+1)]=result$B
-a1=combinat::hcube(rep(2,2), scale = 1)
-us=ifelse(a1==1,0, 1)
-effect1=matrix(nrow = 2^2,ncol = 2)
+effect1=matrix(nrow = 100,ncol = 2)
 for (j in 1:2) {
- for (m in 1:2^2) {
+  for (m in 1:100) {
    effect1[m,j]=beffect(
      index=j,
-     u=us[m,],
+     u=c(1,0),
      mintercept=mintercept,
      BB=BB,
      type="binomial",
@@ -122,10 +119,13 @@ for (j in 1:2) {
      ocoe_intercept=ocoe_intercept,
      ocoe_mm=ocoe_mm
      )
- }
- }
- boxplot(effect1)
+  }
+}
+boxplot(effect1)
 ```
+
+
+
 
 ### Example 2. A mediation model with 2 continuous mediators and binary treatment and outcome: treatment-mediator-interaction-effect model 
 ```{r}

@@ -54,8 +54,8 @@ B=BB[2:(p+1),2:(p+1)]
   if (ncol(des)>0){
     aa=des[1,]-1
     bb=des[2,]
-    mediators1[aa]=mediators1[aa]+bb[index]*mediators1[index]
-    mediators0[aa]=mediators0[aa]+bb[index]*mediators0[index]
+    mediators1[aa]=mediators1[aa]+bb*mediators1[index]
+    mediators0[aa]=mediators0[aa]+bb*mediators0[index]
   }
   D0[i,]=mediators0
   D1[i,]=mediators1
