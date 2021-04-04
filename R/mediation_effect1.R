@@ -14,9 +14,8 @@
 #' @param \code{ocoe_mm} is the coefficient of mediator-mediator interaction
 #' in outcome model
 #'
-#' @return mediation effects
+#' @return
 #' @export
-#'
 beffect=function(index,u, mintercept,BB,type,ocoe_tm,ocoe_confounder
                  ,ocoe_intercept,ocoe_mm){
   ##index-mediator you want to investigate

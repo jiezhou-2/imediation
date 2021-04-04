@@ -282,7 +282,13 @@ AA[12,2:11]=1
 AA[2:11,2:11]=A
 #create graph 
 g1=graph_from_adjacency_matrix(adjmatrix = t(AA))
-plot.igraph(g1)
+vertex.attributes(g1)=  list(name=c("A","M1","M2","M3","M4","M5","M6", "M7","M8","M9","M10","Y"))
+E(g1)$width=1
+E(g1)$color="orange"
+V(g1)$size=4
+coords=layout_(g1,as_star())
+png("simu1.png", heigh=400, width=600)
+plot.igraph(g1,layout=coords)
 ```
 
 

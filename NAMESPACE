@@ -2,7 +2,9 @@
 
 export(beffect)
 export(binary)
+export(ime)
 export(kids)
+export(mcsample)
 export(regression)
 import(MASS)
 import(igraph)
