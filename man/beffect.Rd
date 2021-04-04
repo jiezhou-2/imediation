@@ -40,7 +40,7 @@ outcome model}
 in outcome model}
 }
 \value{
-mediation effects
+
 }
 \description{
 Title

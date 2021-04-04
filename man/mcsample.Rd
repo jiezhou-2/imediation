@@ -22,9 +22,7 @@ in mediator model}
 \item{\code{size}}{is the number of observations to simulate.}
 }
 \value{
-A list with length 2. The first element is a size-by-p
-matrix representing the observations of mediators with treatment; the second represents
-the observations of mediators without treatment.
+
 }
 \description{
 Internal function for function \code{beffect()}

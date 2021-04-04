@@ -7,15 +7,16 @@
 #' @param \code{type} indicate the type of outcome
 #' @param \code{data} \code{n} by \code{p+2} observation matrix
 #' on treatment, mediators and outcome.
-#' @param \code{C} are the confounders
+#' @param \code{C} are the causal matrix
 #'
 #' @return all the estimates of unknown parameters.
 #' @export
 regression=function(form, type, data, C){
   n=nrow(data)
-  p=ncol(C)
+  p=ncol(C)-2
   q=ncol(data)-p-2
   res=matrix(nrow = n, ncol = p)
+  B=C
   mcoe=matrix(nrow = 2, ncol = p)
   if (all(C==0)){
     for (j in 1:p) {
@@ -27,34 +28,28 @@ regression=function(form, type, data, C){
       res[,j]=a$residuals
     }
     mcov=var(res)
+    B[2:(p+1),1]=mcoe[2,]
   }else{
-    B=C
     for (j in 1:p) {
       m_j=data[,j+1]
-      non=which(C[j,]!=0)
-      if (length(non)!=0){
-        parents=data[,c(1,non+1)]
+      non=which(C[j+1,]!=0)
+      if (length(non)==0){stop("there exist redundant mediators!")}
+        parents=data[,non]
         a=lm(m_j~parents)
         ll=summary(a)$coefficients
-        mcoe[,j]=ll[c(1,2),1]
         res[,j]=a$residuals
-        b=summary(a)$coefficients[,1][-c(1,2)]
-        B[j,which(C[j,]!=0)]=b
-      }else{
-        parents=data[,1]
-        a=lm(m_j~parents)
-        ll=summary(a)$coefficients
-        mcoe[,j]=ll[c(1,2),1]
-        res[,j]=a$residuals
-      }
+        b=summary(a)$coefficients[,1]
+        B[j+1,non]=b[-1]
+        mcoe[1,j]=b[1]
     }
+    mcoe[2,]=B[2:(p+1),1]
     mcov=diag(diag(var(res)))
-  }
+    }
   ##outcome model
   index1=which(form[[1]]!=0)
   p1=length(index1)
   MM=form[[2]]
-  if (!isSymmetric(MM)){stop("C should be symmetrical matrix")}
+  if (!isSymmetric(MM)){stop("Second order matrix should be symmetrical matrix")}
   MM[upper.tri(MM)]=0
   diag(MM)=0
   p2=length(which(MM!=0))
@@ -89,6 +84,8 @@ regression=function(form, type, data, C){
   ocoe_intercept=ocoe[1]
   ocoe_treatment=ocoe[2]
   ocoe_mediator=ocoe[3:(p+2)]
+  B[p+2,1]=ocoe_treatment
+  B[p+2,2:(p+1)]=ocoe_mediator
   if (q>0){
   ocoe_confounder=ocoe[(p+3):(p+q+2)]
   }else{
@@ -101,6 +98,7 @@ regression=function(form, type, data, C){
   if (length(index_mm)>0){
   ocoe_mm[index_mm]=ocoe[(p+q+2+p1+1):(p+q+2+p1+p2)]
   }
+
   aa1=list(mcov=mcov,
            mcoe=mcoe,
            B=B,

@@ -12,7 +12,7 @@ kids(BB, index)
 \item{\code{index}}{is the mediator of interest.}
 }
 \value{
-the descendants of given mediator and the related weights
+
 }
 \description{
 Find the descendants

@@ -10,7 +10,6 @@
 #'
 #' @return a size-by-12 matrix
 #' @export
-#'
 #' @examples
 #' data=binary()
 binary=function(p=10,size=200,tc_m=0.5,mc_m=0.5,tc_o=0.5,mc_o=0.5,sigma_m=0.5, sigma_o=0.5){
