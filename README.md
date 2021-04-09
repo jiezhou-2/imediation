@@ -99,9 +99,9 @@ form=vector( "list",2)
 form[[1]]=rep(0,2)
 form[[2]]=matrix(0,nrow = 2, ncol = 2)
 ime(index=1,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.206558
+#> [1] 1.538741
 ime(index=2,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 0.9211097
+#> [1] 1.399055
 ```
 
 ### Example 2. A mediation model with 2 continuous mediators and binary treatment and outcome: treatment-mediator-interaction-effect model
@@ -129,13 +129,13 @@ size=200
   data2=cbind(treatment,mediator,outcome)
   colnames(data2)=c("treatment",paste("mediator",1:2, sep = ""), "outcome")
   head(data2)
-#>      treatment  mediator1   mediator2 outcome
-#> [1,]         1 0.01924392  0.61493590       1
-#> [2,]         0 0.90073651  0.93027974       1
-#> [3,]         1 0.22478331  0.22241985       1
-#> [4,]         1 0.87251663  0.65273009       1
-#> [5,]         1 0.88217957  0.88897716       1
-#> [6,]         0 0.88938930 -0.01249413       0
+#>      treatment  mediator1 mediator2 outcome
+#> [1,]         1  1.3943825 0.6974971       1
+#> [2,]         0 -0.3148659 0.0332907       1
+#> [3,]         1  0.2241190 0.5108918       0
+#> [4,]         1 -0.2603572 0.8852602       0
+#> [5,]         1  0.6461804 0.5222385       0
+#> [6,]         1  0.6233130 0.1631071       1
 ```
 
 ``` r
@@ -144,9 +144,9 @@ form=vector( "list",2)
 form[[1]]=c(0,0)
 form[[2]]=matrix(0,nrow = 2, ncol = 2)
 ime(index=1,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.206518
+#> [1] 1.537586
 ime(index=2,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 0.9211132
+#> [1] 1.399177
 ```
 
 ### Example 3. A mediation model with 2 continuous mediators and binary treatment and outcome: mediator-mediator-interaction-effect model
@@ -174,13 +174,13 @@ size=200
   data3=cbind(treatment,mediator,outcome)
   colnames(data3)=c("treatment",paste("mediator",1:2, sep = ""), "outcome")
   head(data3)
-#>      treatment   mediator1  mediator2 outcome
-#> [1,]         1  0.46817862  1.6473387       0
-#> [2,]         0 -0.23942532 -0.1587687       0
-#> [3,]         0  0.58878890  0.9758190       1
-#> [4,]         1  0.30986837  0.8158234       1
-#> [5,]         0  0.63504643  0.0649456       1
-#> [6,]         0  0.01595039  0.2456792       1
+#>      treatment  mediator1  mediator2 outcome
+#> [1,]         0  0.3628941  0.7150455       0
+#> [2,]         0 -0.1553030  0.6890699       0
+#> [3,]         1  1.3892499  1.8652244       0
+#> [4,]         0 -0.2073995 -0.2562862       1
+#> [5,]         1  0.4117758  1.2439085       0
+#> [6,]         1  0.9330623  0.7632853       1
 ```
 
 ``` r
@@ -189,9 +189,9 @@ form=vector( "list",2)
 form[[1]]=c(0,0)
 form[[2]]=matrix(c(0,1,1,0),nrow = 2, ncol = 2)
 ime(index=1,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.203891
+#> [1] 1.538185
 ime(index=2,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 0.9235921
+#> [1] 1.385657
 ```
 
 ### Example 4. A mediation model with 10 continuous mediators and binary treatment and outcome: main-effect model
@@ -236,9 +236,9 @@ form[[2]]=matrix(0,nrow = 10, ncol = 10)
 u=rep(0,10)
 AA=AA
 ime(index=1,u=u,AA=AA,data = data4,form = form,type = "binomial")
-#> [1] 1.679657
+#> [1] 1.584562
 ime(index=2,u=u,AA=AA,data = data4,form = form,type = "binomial")
-#> [1] 2.61837
+#> [1] 1.494901
 ```
 
 #### DIME
@@ -251,9 +251,9 @@ form[[2]]=matrix(0,nrow = 10, ncol = 10)
 u=rep(0,10)
 BB=AA*0
 ime(index=1,u=u,AA=BB,data = data4,form = form,type = "binomial")
-#> [1] 1.672218
+#> [1] 1.037877
 ime(index=2,u=u,AA=BB,data = data4,form = form,type = "binomial")
-#> [1] 1.031109
+#> [1] 1.886195
 ```
 
 ### Example 5. A high-dimensional mediation model with 100 continuous mediators and binary treatment and outcome
