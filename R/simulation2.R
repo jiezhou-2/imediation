@@ -12,7 +12,7 @@
 #' @export
 #' @examples
 #' data=binary()
-binary=function(p=10,size=200,tc_m=0.5,mc_m=0.5,tc_o=0.5,mc_o=0.5,sigma_m=0.5, sigma_o=0.5){
+binary=function(p=10,size=200,tc_m=0.5,mc_m=0.8,tc_o=0.5,mc_o=0.8,sigma_m=0.5, sigma_o=0.5){
   treatment=sample(x=c(0,1), size = size, replace = T,prob = c(0.5, 0.5))
   mediator=matrix(nrow = size, ncol = 10)
   error=matrix(nrow = size,ncol = 10)

@@ -17,7 +17,7 @@ interaction term between mediator and mediator.}
 \item{\code{data}}{\code{n} by \code{p+2} observation matrix
 on treatment, mediators and outcome.}
 
-\item{\code{C}}{are the confounders}
+\item{\code{C}}{are the causal matrix}
 }
 \value{
 all the estimates of unknown parameters.
