@@ -38,9 +38,8 @@ which outputs the individual mediation effects for given mediator.
     othewise total individual mediation effect is computed.
 
 4)  data is a n by (p+q+2) matrix where the first column is treatment,
-    the last column is the outcome, the 2 to (p+1) columns represents
-    the mediators, the (p+2) to (p+q+1) columns represent the
-    confounders.
+    the last column is the outcome, the 2 to (p+1) columns represent the
+    mediators, the (p+2) to (p+q+1) columns represent the confounders.
 
 5)  form is a list with 2 compoents. The first is a vector where 0 in
     entry j means no interaction between treatment and mediator j in the
@@ -61,18 +60,6 @@ which outputs the individual mediation effects for given mediator.
 
 ``` r
 library(imediation)
-library(combinat)
-#> 
-#> Attaching package: 'combinat'
-#> The following object is masked from 'package:utils':
-#> 
-#>     combn
-library(pracma)
-#> 
-#> Attaching package: 'pracma'
-#> The following object is masked from 'package:combinat':
-#> 
-#>     fact
 library(igraph)
 #> 
 #> Attaching package: 'igraph'
@@ -132,9 +119,9 @@ form=vector( "list",2)
 form[[1]]=rep(0,2)
 form[[2]]=matrix(0,nrow = 2, ncol = 2)
 ime(index=1,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.238851
+#> [1] 1.865739
 ime(index=2,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.999217
+#> [1] 1.061723
 ```
 
 ### Mediation model with 2 continuous mediators and binary treatment and outcome: treatment-mediator-interaction-effect model
@@ -162,13 +149,13 @@ size=200
   data2=cbind(treatment,mediator,outcome)
   colnames(data2)=c("treatment",paste("mediator",1:2, sep = ""), "outcome")
   head(data2)
-#>      treatment  mediator1   mediator2 outcome
-#> [1,]         1 -0.1466476 -0.02630767       1
-#> [2,]         1 -0.1804168  0.72573316       1
-#> [3,]         0  0.9521715  0.38440030       0
-#> [4,]         0  0.5881603  0.35676295       0
-#> [5,]         0 -0.4547166  0.59624079       0
-#> [6,]         0  1.6011390  1.33739245       1
+#>      treatment   mediator1   mediator2 outcome
+#> [1,]         0  0.07066898  0.13328381       0
+#> [2,]         1 -0.29599809  0.02333664       0
+#> [3,]         0  0.16329735 -0.46634229       0
+#> [4,]         0 -0.51862176  0.10820330       0
+#> [5,]         0 -0.38525239 -0.50737046       1
+#> [6,]         1  0.14907520  0.42526928       1
 ```
 
 ``` r
@@ -177,9 +164,9 @@ form=vector( "list",2)
 form[[1]]=c(0,0)
 form[[2]]=matrix(0,nrow = 2, ncol = 2)
 ime(index=1,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.239677
+#> [1] 1.866427
 ime(index=2,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.997512
+#> [1] 1.061074
 ```
 
 ### Mediation model with 2 continuous mediators and binary treatment and outcome: mediator-mediator-interaction-effect model
@@ -207,13 +194,13 @@ size=200
   data3=cbind(treatment,mediator,outcome)
   colnames(data3)=c("treatment",paste("mediator",1:2, sep = ""), "outcome")
   head(data3)
-#>      treatment   mediator1  mediator2 outcome
-#> [1,]         0  0.01568517 0.25138910       1
-#> [2,]         1 -0.02882653 0.02247689       1
-#> [3,]         1  1.47552668 1.75849125       1
-#> [4,]         1  0.04480790 0.21392596       0
-#> [5,]         1 -0.16273020 0.10853142       1
-#> [6,]         0 -0.02919080 0.18881797       1
+#>      treatment  mediator1  mediator2 outcome
+#> [1,]         1  0.7361558  0.8103868       1
+#> [2,]         0 -0.8554943 -0.0830664       1
+#> [3,]         0  0.1729030  0.1795705       0
+#> [4,]         0 -0.1121925 -0.3858314       0
+#> [5,]         1  1.4901547  1.0287766       1
+#> [6,]         0  1.1304708  0.1901864       1
 ```
 
 ``` r
@@ -222,7 +209,7 @@ form=vector( "list",2)
 form[[1]]=c(0,0)
 form[[2]]=matrix(c(0,1,1,0),nrow = 2, ncol = 2)
 ime(index=1,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.239158
+#> [1] 1.864117
 ime(index=2,u=c(0,0),AA=AA,data = data1,form = form,type = "binomial")
-#> [1] 1.998705
+#> [1] 1.06717
 ```

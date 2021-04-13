@@ -44,7 +44,7 @@ which outputs the individual mediation effects for given mediator.
 (3) AA is a p by p (0,1)-matrix specifying the causal relationships among mediators. The parents of mediator i are represented by the nonzero entry in ith row of AA.  If AA==0, which means no causality is available,  then direct individual mediation effect is computed othewise total individual mediation effect is computed. 
 
 
-(4) data is a n by (p+q+2) matrix where the first column is treatment, the last column is the outcome, the 2 to (p+1) columns represents the mediators, the (p+2) to (p+q+1) columns represent the confounders.    
+(4) data is a n by (p+q+2) matrix where the first column is treatment, the last column is the outcome, the 2 to (p+1) columns represent the mediators, the (p+2) to (p+q+1) columns represent the confounders.    
 
 
 (5) form is a list with 2 compoents. The first is a vector where 0 in entry j means no interaction between treatment and mediator j in the outcome model, 1 means there is interaction between treatment and mediator j in the outcome model. The second component is a symmetrical p by p matrix. If the (i,j) entry is 1, then there is interaction between mediator i and mediator j in the outcome model. If (i,j) entry is 0, then there is no interaction between mediator i and mediator j in the outcome model. 
@@ -54,8 +54,6 @@ which outputs the individual mediation effects for given mediator.
 
 ```{r setup}
 library(imediation)
-library(combinat)
-library(pracma)
 library(igraph)
 ```
 
