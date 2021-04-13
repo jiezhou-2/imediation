@@ -29,19 +29,18 @@ Install the development version from [GitHub](https://github.com/) with:
 devtools::install_github("jiezhou-2/imediation")
 ```
 The main function in this package is 
-
- ime(index,u,AA,data,form,type) 
-
+```r
+ime(index,u,AA,data,form,type)
+```
 which outputs the individual mediation effects for given mediator. 
 
+``` r
+(1) index specifies the mediator of interest.  The p mediators are indexed by 1,2,...p respectively.
 
-(1) index specify the mediator of interest. The p mediators are indexed respectively by 1,2,...p.
+(2) Vector u specifies the state of treatment and other mediators, where 0 stands for no treatment, 1  treatment.
 
 
-(2) Vector u specify the state of treatment and other mediators, where 0 stands for no treatment, 1 treatment.
-
-
-(3) AA is a p by p (0,1)-matrix specifying the causal relationships among mediators. The parents of mediator i are represented by the nonzero entry in ith row of AA.  If AA==0, which means no causality is available,  then direct individual mediation effect is computed othewise total individual mediation effect is computed. 
+(3) AA is a p by p (0,1)-matrix specifying the causal relationships among mediators. The parents of mediator i are represented by the nonzero entry in ith row of AA.  If AA=0, which means no causality is available,  then direct individual mediation effect is computed othewise total individual mediation effect is computed. 
 
 
 (4) data is a n by (p+q+2) matrix where the first column is treatment, the last column is the outcome, the 2 to (p+1) columns represent the mediators, the (p+2) to (p+q+1) columns represent the confounders.    
@@ -50,7 +49,8 @@ which outputs the individual mediation effects for given mediator.
 (5) form is a list with 2 compoents. The first is a vector where 0 in entry j means no interaction between treatment and mediator j in the outcome model, 1 means there is interaction between treatment and mediator j in the outcome model. The second component is a symmetrical p by p matrix. If the (i,j) entry is 1, then there is interaction between mediator i and mediator j in the outcome model. If (i,j) entry is 0, then there is no interaction between mediator i and mediator j in the outcome model. 
 
 
-(6) type has two options, one is "continuous", which means outcome will by modeled by normal regression,  the other is "binomial", which means outcome will by modeled by logistic regression. In formar case, mediation effect is measured by the difference. In later case, mediation effect is measured by odds ratio. 
+(6) type has two options, one is "continuous", which means outcome will by modeled by normal regression,  the other is "binomial", which means outcome will by modeled by logistic regression. In formar case, mediation effect is measured by the difference of outcome. In later case, mediation effect is measured by odds ratio. 
+```
 
 ```{r setup}
 library(imediation)
